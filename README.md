@@ -159,6 +159,3 @@ While building this project, I learned how to combine Python fundamentals to cre
 
 The project particularly helped me understand **functions, loops, dictionaries, random number generation, input validation, and program flow**.
 
-
-
-⭐ If you found this project useful, feel free to star the repository!
