@@ -1,46 +1,105 @@
 # 🎰 Python Slot Machine
 
 A simple **console-based Slot Machine game built with Python**.
-The project demonstrates Python fundamentals such as functions, loops, dictionaries, random numbers, input validation, and basic game logic.
+The project demonstrates Python fundamentals such as functions, loops, dictionaries, lists, randomization, input validation, and basic game logic.
 
-## 📌 Project Overview
+## 📌 Features
 
-This project simulates a 3×3 slot machine where the player:
-
-1. Deposits an amount of money.
-2. Selects how many lines to bet on.
-3. Chooses the bet amount.
-4. Spins the slot machine.
-5. Checks whether the selected lines contain matching symbols.
-6. Receives winnings based on the matching symbol and bet amount.
-
-## 🎮 Features
-
-* 💰 Deposit money into the game
-* 🎯 Select 1–3 betting lines
-* 💵 Set a bet between ₹100 and ₹1000 per line
-* 🎰 Random slot machine generation
-* 🏆 Automatic winning calculation
-* 📊 Different values for different symbols
-* ✅ Input validation
-* 🐍 Built completely with Python
-
-## 🛠️ Technologies Used
-
-* **Python 3**
-* `random` module
-* Functions
-* Loops
-* Dictionaries
-* Conditional statements
-* Input validation
+* 💰 Deposit an initial balance
+* 🎰 3 × 3 slot machine
+* 🎯 Choose how many lines to bet on
+* 💵 Set a bet amount for each line
+* 🏆 Calculate winnings based on matching symbols
+* 📊 Display winning lines
+* 🔄 Play multiple rounds
+* 🚪 Quit the game whenever you want
+* ✅ Input validation for deposits, lines, and bets
+* 💸 Prevents betting more than the available balance
 
 
-## ⚙️ How It Works
+## 🎮 How the Game Works
 
-### 1. Symbol Count
+The slot machine contains four symbols:
 
-The game uses four symbols:
+| Symbol | Count | Value |
+| ------ | ----- | ----- |
+| A      | 2     | ₹5    |
+| B      | 4     | ₹4    |
+| C      | 6     | ₹3    |
+| D      | 8     | ₹2    |
+
+The game uses these symbols to generate a random **3 × 3 slot machine**.
+
+### Winning Rule
+
+A line is considered a winning line when all symbols in that row are the same.
+
+For example:
+
+```text
+A | A | A
+B | C | D
+C | B | D
+```
+
+The first row is a winning line because all three symbols are `A`.
+
+The winnings are calculated using:
+
+```text
+Symbol Value × Bet
+```
+
+For example:
+
+```text
+A = ₹5
+Bet = ₹100
+
+Winnings = ₹5 × ₹100
+         = ₹500
+```
+
+## 💰 Betting System
+
+The game has the following limits:
+
+```python
+MAX_LINES = 3
+MAX_BET = 10000
+MIN_BET = 100
+```
+
+This means:
+
+* Minimum bet per line: **₹100**
+* Maximum bet per line: **₹10,000**
+* Maximum betting lines: **3**
+
+If you choose 3 lines and bet ₹100 per line:
+
+```text
+Total Bet = ₹100 × 3
+          = ₹300
+```
+
+The game also checks whether your balance is sufficient before allowing the bet.
+
+
+
+## 🧠 Concepts Learned
+
+This project helped practice several important Python concepts:
+
+### Variables
+
+```python
+MAX_LINES = 3
+MAX_BET = 10000
+MIN_BET = 100
+```
+
+### Dictionaries
 
 ```python
 symbol_count = {
@@ -51,111 +110,56 @@ symbol_count = {
 }
 ```
 
-The number represents how frequently each symbol appears.
-
-### 2. Symbol Value
-
-Each symbol has a different winning value:
+### Functions
 
 ```python
-symbol_value = {
-    "A": 5,
-    "B": 4,
-    "C": 3,
-    "D": 2
-}
+def deposit():
+    ...
 ```
-
-The rarer symbols have higher values.
-
-### 3. Betting
-
-The player can select between **1 and 3 lines**.
-
-The bet per line must be between:
-
-```text
-₹100 - ₹1000
-```
-
-The total bet is calculated as:
 
 ```python
-total_bet = bet * lines
+def get_bet():
+    ...
 ```
-
-### 4. Slot Machine Spin
-
-The program randomly generates a 3×3 slot machine using Python's `random` module.
-
-Example:
-
-```text
-A | D | B
-C | D | A
-B | D | C
-```
-
-### 5. Winning Logic
-
-The program checks each selected row.
-
-For example:
-
-```text
-A | A | A
-B | C | D
-C | C | C
-```
-
-If the player selected 3 lines, lines **1 and 3** are winning lines.
-
-The winnings are calculated using:
 
 ```python
-winnings += values[symbol] * bet
+def spin(balance):
+    ...
 ```
 
-## 💻 Example
+### Loops
 
-```text
-What would you like to deposit: ₹ 1000
+The project uses both `for` and `while` loops for:
 
-Enter the number of lines to bet on (1-3)? 2
+* Generating slots
+* Validating input
+* Running multiple game rounds
 
-What would you like to bet on line? : ₹ 100
+### Randomization
 
-You are betting ₹100 on 2 lines.
-Total bet is equal to ₹200
+The Python `random` module is used to generate random slot results:
 
-Your slot machine:
-
-A | D | B
-C | D | A
-B | D | C
-
-You won ₹0.
-You won on lines: []
+```python
+value = random.choice(current_symbols)
 ```
 
-## 🚀 Future Improvements
+### Input Validation
 
-Possible improvements for future versions:
+The program checks whether the user enters valid numbers and whether the bet is within the allowed range.
 
-* [ ] Add multiple rounds
-* [ ] Deduct the bet from the player's balance
-* [ ] Allow the player to play again
-* [ ] Add a quit option
-* [ ] Add more symbols
+## 🔮 Future Improvements
+
+Possible improvements for this project:
+
+* [ ] Add colorful terminal output
+* [ ] Add a spinning animation
+* [ ] Add multiple types of winning combinations
+* [ ] Add diagonal winning lines
+* [ ] Add jackpot rewards
 * [ ] Add sound effects
-* [ ] Add a graphical user interface
-* [ ] Add animations
-* [ ] Add a betting history
-* [ ] Add a final balance display
-
-## 📚 What I Learned
-
-While building this project, I learned how to combine Python fundamentals to create a small interactive application.
-
-The project particularly helped me understand **functions, loops, dictionaries, random number generation, input validation, and program flow**.
+* [ ] Add game statistics
+* [ ] Add a leaderboard
+* [ ] Add a graphical user interface using Tkinter
+* [ ] Add unit tests
+* [ ] Improve the betting and reward system
 
